@@ -3,7 +3,7 @@ General Plan
 
 Phase 1: Data Collection
 Phase 2: Data Analysis
-Phase 3: Prediction of good/bad days (via clustering)
+Phase 3: Prediction of good/bad days or moodswings (via clustering and linear regression)
 
 
 */
