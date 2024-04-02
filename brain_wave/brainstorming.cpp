@@ -16,8 +16,6 @@ Phase 3: Prediction of good/bad days or moodswings (via clustering and linear re
 
 
 
-
-
 // Questions:
 // 1) Sending Data from Arduino to a .csv file or something like that? (Use this to determine overall architecture of project)
 //      Alternate method to webserver: PuTTY
@@ -25,6 +23,11 @@ Phase 3: Prediction of good/bad days or moodswings (via clustering and linear re
 // 3) Object-oriented Programming?
 // 4) Utilizing program space (static/flash), Dynamic Memory, and other unconventional buffers/registers
 
+
+
+
+
+// WARNING! THESE CALCULATIONS ARE PROBABLY BETTER OFF BEING DONE ON A SEPARATE MACHEINE WITH PRE-EXISTING TOOLS LIKE THE R PROGRAMMING LANGUAGE
 
 
 // Reads the data, performs calculations, returns regression line info 
