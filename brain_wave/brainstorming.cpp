@@ -2,7 +2,7 @@
 General Plan
 
 Phase 1: Data Collection
-Phase 2: Data Analysis
+Phase 2: Data Analysis (Use this to eliminate variables not of interest because we are dealing with very limited memory)
 Phase 3: Prediction of good/bad days or moodswings (via clustering and linear regression)
 
 
@@ -27,7 +27,7 @@ Phase 3: Prediction of good/bad days or moodswings (via clustering and linear re
 
 
 
-// WARNING! THESE CALCULATIONS ARE PROBABLY BETTER OFF BEING DONE ON A SEPARATE MACHEINE WITH PRE-EXISTING TOOLS LIKE THE R PROGRAMMING LANGUAGE
+// WARNING! THESE CALCULATIONS ARE PROBABLY BETTER OFF BEING DONE ON A SEPARATE MACHINE WITH PRE-EXISTING TOOLS LIKE THE R PROGRAMMING LANGUAGE
 
 
 // Reads the data, performs calculations, returns regression line info 
@@ -54,21 +54,6 @@ void calculateRegressionLine(float *x_list, float *y_list, int list_size, float 
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
