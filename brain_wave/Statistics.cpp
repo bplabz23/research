@@ -43,7 +43,7 @@ float Statistics::average(float* data_list, int data_size)
 
 
 
-float Statistics::standardDeviation(float* data_list, const int data_size)
+float Statistics::stdDeviation(float* data_list, const int data_size)
 {
     // 1. Compute the mean of the data set
     float mean = average(data_list, data_size);
@@ -66,7 +66,7 @@ float Statistics::standardDeviation(float* data_list, const int data_size)
     }
     
 
-    // 4. Take the sum of our squared differences (step 3 and 4 may be combined for optimization)
+    // 4. Take the sum of our squared differences (I think we are just taking an average so some stuff can be optimized here)
     float sum = 0;
     
     for (int i = 0; i < data_size; i++)
@@ -84,3 +84,32 @@ float Statistics::standardDeviation(float* data_list, const int data_size)
     // Return standard deviation
     return std_deviation;
 }
+
+
+
+// Returns the z-score of the data located at data_index
+
+float Statistics::zScore(int float* data_list, const int data_size, int data_index)
+{
+    // Z-score is just a way of telling how many standard deviations our data is from the mean
+    
+    // Setup, get some stuff we need
+    float mean = mean(data_list, data_size);
+    float stdDev = stdDeviation(data_list, data_size);
+    float data = data_list[data_index];
+
+    // 1. Get distance of data from the mean
+    float zScore = data - mean;
+
+    // 2. Divide by standard deviation
+    zScore = zScore / stdDev;
+
+    return zScore;
+
+}
+
+
+
+
+
+
