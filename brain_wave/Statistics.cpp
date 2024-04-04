@@ -87,25 +87,24 @@ float Statistics::stdDeviation(float* data_list, const int data_size)
 
 
 
-// Returns the z-score of the data located at data_index
 
-float Statistics::zScore(int float* data_list, const int data_size, int data_index)
+
+
+
+// Returns the z-score of the data provided 
+
+float Statistics::zScore(float data, float mean, float std_dev)
 {
     // Z-score is just a way of telling how many standard deviations our data is from the mean
-    
-    // Setup, get some stuff we need
-    float mean = mean(data_list, data_size);
-    float stdDev = stdDeviation(data_list, data_size);
-    float data = data_list[data_index];
+
 
     // 1. Get distance of data from the mean
-    float zScore = data - mean;
+    float z = data - mean;
 
     // 2. Divide by standard deviation
-    zScore = zScore / stdDev;
+    z = z / std_dev;
 
-    return zScore;
-
+    return z;
 }
 
 
@@ -113,3 +112,57 @@ float Statistics::zScore(int float* data_list, const int data_size, int data_ind
 
 
 
+
+float Statistics::getLinearCorrelation(float *var_x, float *var_y, const int data_size)
+{
+    // What we do for a datapoint is 
+    //      1. Get its z-score in the x dimension (how much the data deviates from the average x value)
+    //      2. Get its z-score in the y dimension (how much the data deviates from the average y value)
+    //      3. Take the product of those z-scores
+    
+    //  Then for all data points, we take the average product
+
+
+    // 1. Get data we need for x and y variables
+    float x_mean = average(var_x, data_size);
+    float x_deviation = stdDeviation(var_x, data_size);
+
+    float y_mean = average(var_y, data_size);
+    float y_deviation = stdDeviation(var_y, data_size);
+
+
+    // 2. We're going to get z-scores for each piece of data, take the product, and then keep a list of products
+    float x_score;
+    float y_score;
+
+    float products[data_size];
+
+    // For data-point i
+    for (int i = 0; i < data_size; i++)
+    {
+
+        x_score = zScore( var_x[i], x_mean, x_deviation );      // Get its z-score for its x-value
+        y_score = zScore( var_y[i], y_mean, y_deviation );      // Get its z-score for its y-value
+
+        products[i] = x_score * y_score;                        // Get the product of its scores
+    }
+
+
+    // 3. Take the average of the products (or find the average area produced by the z-scores)
+
+    //  WARNING: In calculating r, we have to consider the degrees of freedom, MEANING this is a strange case of the mean 
+    //            where we have to use (n-1) instead of n. And on top of that, we can't just pass n-1 to average()
+    //            because otherwise, the function will not read the full array due to the way it's written.
+
+    //  OPTIMIZE:    This program can definitely be optimized by creating a sum() function
+
+    float sum = 0;
+    for (int i = 0; i < data_size; i++)
+    {
+        sum += products[i];
+    }
+
+    float r = sum / (data_size - 1);       // correlation co-efficient = sum / (n-1)
+
+    return r;
+}
