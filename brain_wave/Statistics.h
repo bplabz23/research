@@ -21,3 +21,8 @@ class Statistics
         float getLinearIntercept(float* var_x, float* var_y, const int data_size);
 
 };
+
+
+
+
+

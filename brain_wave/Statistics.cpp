@@ -166,3 +166,44 @@ float Statistics::getLinearCorrelation(float *var_x, float *var_y, const int dat
 
     return r;
 }
+
+
+
+
+
+
+
+
+float Statistics::getLinearSlope(float *var_x, float *var_y, const int data_size)
+{
+    // m  = r * (y_deviation / x_deviation)
+    // We still sort of have that idea of rise over run, how much the standard deviation in y changes per standard deviation of x
+
+    float r = getLinearCorrelation(var_x, var_y, data_size);
+    float x_stdDeviation = stdDeviation(var_x, data_size);
+    float y_stdDeviation = stdDeviation(var_y, data_size);
+
+    float m = r * ( y_stdDeviation / x_stdDeviation );
+    return m;
+}
+
+
+
+
+
+
+
+float Statistics::getLinearIntercept(float *var_x, float *var_y, const int data_size)
+{
+    // We know that one our points our line goes through is (x_avg, y_avg)
+    // All we have to do is plug this and our slope into the line equation and solve for b
+    // b = y - mx
+
+    float m = getLinearSlope(var_x, var_y, data_size);
+    float x_mean = average(var_x, data_size);
+    float y_mean = average(var_y, data_size);
+
+    float b = y_mean - (m * x_mean);
+
+    return b;
+}
