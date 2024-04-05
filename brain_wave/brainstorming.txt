@@ -1,3 +1,18 @@
+// New Plan:
+//        1: Have 3 Clusters: Good mood, neutral mood, bad mood
+//        2: Run through all the data we collect, re-organize it, create various scatter-plots of different variables
+//        3: Find the best relationship between two variables, x and y, such that:
+//               a) The least amount of spread (distance) from the center of the clusters
+//               b) The most amount of distance between clusters is achieved
+//
+//               Note: These goals, a and b, may be odds with eachother, and the computer may have to decide which strategy is more
+//                    effective for making predictions (based on probability)
+
+
+
+
+
+
 /*
 General Plan
 
